@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ni.edu.uam.servicioweb.controller.CustomerController"
+            prefWidth="1400.0"
+            prefHeight="850.0"
+            style="-fx-background-color: #F4F7FB;">
+
+    <top>
+        <VBox spacing="8"
+              style="-fx-background-color: #FFFFFF;
+                     -fx-border-color: transparent transparent #E5EAF1 transparent;
+                     -fx-border-width: 0 0 1 0;">
+
+            <padding>
+                <Insets top="22" right="28" bottom="22" left="28"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="4">
+                    <Label text="Gestión de clientes"
+                           style="-fx-font-size: 25px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #172B4D;"/>
+
+                    <Label text="Administra y consulta la información de tus clientes"
+                           style="-fx-font-size: 13px;
+                                  -fx-text-fill: #718096;"/>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label text="CLIENT MANAGEMENT"
+                       style="-fx-background-color: #EAF2FF;
+                              -fx-text-fill: #2864C5;
+                              -fx-font-weight: bold;
+                              -fx-padding: 9 14 9 14;
+                              -fx-background-radius: 8;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="22" right="24" bottom="22" left="24"/>
+            </padding>
+
+            <VBox spacing="16" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 12;
+                         -fx-border-color: #E6EBF2;
+                         -fx-border-radius: 12;">
+
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="4">
+                        <Label text="Directorio de clientes"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #172B4D;"/>
+
+                        <Label text="Consulta, busca y selecciona un cliente"
+                               style="-fx-font-size: 12px;
+                                      -fx-text-fill: #718096;"/>
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <Label fx:id="lblTotalClientes"
+                           text="20 clientes"
+                           style="-fx-background-color: #EAF2FF;
+                                  -fx-text-fill: #2864C5;
+                                  -fx-padding: 8 12 8 12;
+                                  -fx-background-radius: 7;"/>
+                </HBox>
+
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+
+                    <TextField fx:id="txtBuscar"
+                               promptText="Buscar por nombre, correo o país..."
+                               onKeyReleased="#buscar"
+                               HBox.hgrow="ALWAYS"
+                               prefHeight="38"
+                               style="-fx-background-color: #F8FAFC;
+                                      -fx-border-color: #DCE3ED;
+                                      -fx-border-radius: 7;
+                                      -fx-background-radius: 7;
+                                      -fx-padding: 8;"/>
+
+                    <Button text="Buscar"
+                            onAction="#buscar"
+                            prefHeight="38"
+                            style="-fx-background-color: #2864C5;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 7;
+                                   -fx-cursor: hand;"/>
+                </HBox>
+
+
+                <TableView fx:id="tablaClientes"
+                           VBox.vgrow="ALWAYS"
+                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
+                           style="-fx-background-color: white;
+                                  -fx-border-color: #E6EBF2;
+                                  -fx-border-radius: 7;">
+
+                    <columns>
+
+                        <TableColumn fx:id="colId"
+                                     text="ID"
+                                     prefWidth="45"/>
+
+                        <TableColumn fx:id="colNombre"
+                                     text="Nombre"
+                                     prefWidth="105"/>
+
+                        <TableColumn fx:id="colApellido"
+                                     text="Apellido"
+                                     prefWidth="110"/>
+
+                        <TableColumn fx:id="colCorreo"
+                                     text="Correo"
+                                     prefWidth="170"/>
+
+                        <TableColumn fx:id="colTelefono"
+                                     text="Teléfono"
+                                     prefWidth="105"/>
+
+                        <TableColumn fx:id="colPais"
+                                     text="País"
+                                     prefWidth="90"/>
+
+                        <TableColumn fx:id="colCiudad"
+                                     text="Ciudad"
+                                     prefWidth="100"/>
+
+                        <TableColumn fx:id="colIngreso"
+                                     text="Ingreso anual"
+                                     prefWidth="95"/>
+
+                        <TableColumn fx:id="colEstado"
+                                     text="Estado"
+                                     prefWidth="75"/>
+
+                    </columns>
+
+                    <placeholder>
+                        <Label text="No hay clientes para mostrar."
+                               style="-fx-text-fill: #718096;"/>
+                    </placeholder>
+
+                </TableView>
+
+                <Label text="Selecciona un registro para visualizar o modificar sus datos."
+                       style="-fx-font-size: 11px;
+                              -fx-text-fill: #8794A7;"/>
+
+            </VBox>
+
+
+            <VBox spacing="14"
+                  prefWidth="390"
+                  minWidth="360"
+                  maxWidth="390"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 12;
+                         -fx-border-color: #E6EBF2;
+                         -fx-border-radius: 12;">
+
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Información del cliente"
+                       style="-fx-font-size: 18px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #172B4D;"/>
+
+                <Label text="Completa los campos para registrar o editar."
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: #718096;"/>
+
+                <Separator/>
+
+                <ScrollPane fitToWidth="true"
+                            VBox.vgrow="ALWAYS"
+                            hbarPolicy="NEVER"
+                            style="-fx-background-color: transparent;
+                                   -fx-background: transparent;">
+
+                    <content>
+                        <VBox spacing="12">
+
+                            <Label text="ID del cliente"/>
+                            <TextField fx:id="txtId"
+                                       editable="false"
+                                       promptText="Generado automáticamente"/>
+
+                            <Label text="Nombre"/>
+                            <TextField fx:id="txtNombre"
+                                       promptText="Ingrese el nombre"/>
+
+                            <Label text="Apellido"/>
+                            <TextField fx:id="txtApellido"
+                                       promptText="Ingrese el apellido"/>
+
+                            <Label text="Correo electrónico"/>
+                            <TextField fx:id="txtCorreo"
+                                       promptText="ejemplo@correo.com"/>
+
+                            <Label text="Teléfono"/>
+                            <TextField fx:id="txtTelefono"
+                                       promptText="Número telefónico"/>
+
+                            <Label text="Fecha de nacimiento"/>
+                            <DatePicker fx:id="dpFechaNacimiento"
+                                        promptText="Seleccione una fecha"
+                                        maxWidth="Infinity"/>
+
+                            <Label text="País"/>
+                            <ComboBox fx:id="cbPais"
+                                      promptText="Seleccione un país"
+                                      maxWidth="Infinity"/>
+
+                            <Label text="Ciudad"/>
+                            <TextField fx:id="txtCiudad"
+                                       promptText="Ingrese la ciudad"/>
+
+                            <Label text="Dirección"/>
+                            <TextField fx:id="txtDireccion"
+                                       promptText="Ingrese la dirección"/>
+
+                            <Separator/>
+
+                            <Label text="Información financiera"
+                                   style="-fx-font-size: 14px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #2864C5;"/>
+
+                            <Label text="Ingreso anual"/>
+                            <TextField fx:id="txtIngresoAnual"
+                                       promptText="Ej. 42000"/>
+
+                            <Label text="Puntuación crediticia"/>
+                            <TextField fx:id="txtCreditScore"
+                                       promptText="Ej. 720"/>
+
+                            <CheckBox fx:id="chkTieneDeuda"
+                                      text="El cliente tiene deuda pendiente"/>
+
+                            <Label text="Monto de deuda pendiente"/>
+                            <TextField fx:id="txtMontoDeuda"
+                                       promptText="Ej. 1250.50"/>
+
+                            <Label text="Estado del cliente"/>
+                            <ComboBox fx:id="cbEstado"
+                                      promptText="Seleccione el estado"
+                                      maxWidth="Infinity"/>
+
+                            <Separator/>
+
+                            <Label text="Fechas de registro"
+                                   style="-fx-font-size: 14px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #2864C5;"/>
+
+                            <Label text="Fecha de creación"/>
+                            <TextField fx:id="txtFechaCreacion"
+                                       editable="false"
+                                       promptText="Automática"/>
+
+                            <Label text="Última actualización"/>
+                            <TextField fx:id="txtFechaActualizacion"
+                                       editable="false"
+                                       promptText="Automática"/>
+
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+
+                <Separator/>
+
+                <Button text="Registrar cliente"
+                        onAction="#guardar"
+                        maxWidth="Infinity"
+                        prefHeight="42"
+                        style="-fx-background-color: #2864C5;
+                               -fx-text-fill: white;
+                               -fx-font-size: 13px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 7;
+                               -fx-cursor: hand;"/>
+
+                <HBox spacing="10">
+                    <Button text="Actualizar"
+                            onAction="#actualizar"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"
+                            prefHeight="38"
+                            style="-fx-background-color: #EAF2FF;
+                                   -fx-text-fill: #2864C5;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 7;
+                                   -fx-cursor: hand;"/>
+
+                    <Button text="Eliminar"
+                            onAction="#eliminar"
+                            HBox.hgrow="ALWAYS"
+                            maxWidth="Infinity"
+                            prefHeight="38"
+                            style="-fx-background-color: #FDECEC;
+                                   -fx-text-fill: #D64545;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 7;
+                                   -fx-cursor: hand;"/>
+                </HBox>
+
+                <Button text="Limpiar formulario"
+                        onAction="#limpiar"
+                        maxWidth="Infinity"
+                        prefHeight="35"
+                        style="-fx-background-color: #F1F4F8;
+                               -fx-text-fill: #526174;
+                               -fx-background-radius: 7;
+                               -fx-cursor: hand;"/>
+
+            </VBox>
+
+        </HBox>
+    </center>
+
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT"
+              style="-fx-background-color: white;
+                     -fx-border-color: #E5EAF1 transparent transparent transparent;">
+
+            <padding>
+                <Insets top="12" right="28" bottom="12" left="28"/>
+            </padding>
+
+            <Label fx:id="lblMensaje"
+                   text="Sistema de gestión de clientes | Listo"
+                   style="-fx-font-size: 11px;
+                          -fx-text-fill: #718096;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="JavaFX | IntelliJ IDEA"
+                   style="-fx-font-size: 11px;
+                          -fx-text-fill: #8794A7;"/>
+
+        </HBox>
+    </bottom>
+
+</BorderPane>
